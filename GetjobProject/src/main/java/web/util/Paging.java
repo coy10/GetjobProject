@@ -29,7 +29,7 @@ public class Paging {
 	public Paging() { }
 	
 	// 총 게시글 수만 입력하는 생성자
-	//	curPage == 1
+	//		curPage == 1
 	//	pageCount == 10
 	//	listCount == 10
 	public Paging(int totalCount) {
@@ -39,8 +39,8 @@ public class Paging {
 	}
 
 	// 총 게시글 수와 현재 페이지를 입력하는 생성자
-	//	pageCount == 10
-	//	listCount == 10
+	//		pageCount == 10
+	//		listCount == 10
 	public Paging(int totalCount, int curPage) {
 		this.setTotalCount(totalCount);
 		this.setCurPage(curPage);

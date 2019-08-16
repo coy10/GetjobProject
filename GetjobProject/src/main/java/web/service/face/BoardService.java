@@ -6,6 +6,7 @@ import web.util.Paging;
 
 public interface BoardService {
 	
-	public List list(Paging paging);
+	public List list();
 
+	public Paging getCurPage(int curPage);
 }
