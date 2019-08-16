@@ -8,9 +8,16 @@
 	
 <mapper namespace="web.dao.face.BoardDao">
 
-	<select id="selectAll" resultType="web.dto.Board">
-		SELECT * FROM board
-		ORDER BY board_no DESC
+	<select id="selectAll" parameterType="web.util.Paging" resultType="web.dto.Board">
+		SELECT * FROM (
+			SELECT rownum rnum, B.* FROM(
+				SELECT
+				board_no, title, content, writer_id, writer_nick, hit, write_date FROM board
+				ORDER BY board_no DESC
+			) B
+		ORDER BY rnum
+		)
+		WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
 
 	<select id="selectCntAll" resultType="int">

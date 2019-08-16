@@ -15,9 +15,9 @@ public class BoardServiceImpl implements BoardService {
 @Autowired BoardDao boardDao;
 	
 	@Override
-	public List list() {
+	public List list(Paging paging) {
 		
-		return boardDao.selectAll();
+		return boardDao.selectAll(paging);
 	}
 
 	@Override
