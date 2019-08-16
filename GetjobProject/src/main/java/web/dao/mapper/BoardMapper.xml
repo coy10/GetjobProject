@@ -8,5 +8,13 @@
 	
 <mapper namespace="web.dao.face.BoardDao">
 
+	<select id="selectAll" resultType="web.dto.Board">
+		SELECT * FROM board
+		ORDER BY board_no DESC
+	</select>
+
+	<select id="selectCntAll" resultType="int">
+		SELECT COUNT(*) FROM board
+	</select>
 
 </mapper>
