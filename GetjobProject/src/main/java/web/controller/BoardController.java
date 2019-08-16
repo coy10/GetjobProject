@@ -20,23 +20,24 @@ public class BoardController {
 	
 	@Autowired BoardService boardService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	
 	
 	@RequestMapping(value="/board/list", method=RequestMethod.GET)
 	public void list(Model model, @RequestParam(defaultValue = "1") int curPage) {
 	
-		List<Board> list = boardService.list();
-		
-		logger.info(list.toString());
-		
-		model.addAttribute("list1", list);
-		
 		Paging paging = boardService.getCurPage(curPage);
 		
 		model.addAttribute("paging", paging);
 		
+		List<Board> list = boardService.list(paging);
+		
+		model.addAttribute("list1", list);
+
+		logger.info(paging.toString());
+		
+		logger.info(list.toString());
 		
 		logger.info("보드리스트");
 	
