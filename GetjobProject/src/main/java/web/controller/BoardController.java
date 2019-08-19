@@ -43,4 +43,19 @@ public class BoardController {
 	
 	}
 	
+	@RequestMapping(value="/board/view", method=RequestMethod.GET)
+	public void view(Model model, int board_no) {
+		
+		Board view= boardService.view(board_no);
+		
+		model.addAttribute("view", view);
+		
+		logger.info("보드뷰"+view);
+		
+		logger.info("보드넘버"+board_no);
+		
+		logger.info("보드 뷰");
+	
+	}
+	
 }

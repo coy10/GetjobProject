@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import web.dao.face.BoardDao;
+import web.dto.Board;
 import web.service.face.BoardService;
 import web.util.Paging;
 
@@ -29,5 +30,11 @@ public class BoardServiceImpl implements BoardService {
 		
 		return paging;
 	}
- 
+
+	@Override
+	public Board view(int board_no) {
+		boardDao.hit(board_no);
+		return boardDao.selectBoardByBoardno(board_no);
+	}
+
 }
