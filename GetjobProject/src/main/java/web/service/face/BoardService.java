@@ -12,4 +12,6 @@ public interface BoardService {
 	public Paging getCurPage(int curPage);
 	
 	public Board view(int board_no);
+	
+	public void insertWrite(Board board);
 }

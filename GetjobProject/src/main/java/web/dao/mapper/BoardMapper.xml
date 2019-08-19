@@ -24,7 +24,7 @@
 		SELECT COUNT(*) FROM board
 	</select>
 	
-	<select id="selectBoardByBoardno" parameterType="int" resultType="web.dto.Board">
+	<select id="selectBoardByBoardno" parameterType="int" resultType="web.dto.Board" >
 		SELECT board_no, title, writer_id, writer_nick, content, hit, write_date FROM board
 		WHERE board_no=#{board_no}
 	</select>
@@ -33,7 +33,11 @@
 		UPDATE board
 		SET hit=hit+1
 		WHERE board_no=#{board_no}
-		
 	</update>
+	
+	<insert id="insertWrite" parameterType="web.dto.Board" >
+		INSERT INTO board(board_no, title, content, writer_id, writer_nick, hit, write_date)
+		VALUES (board_seq.nextval, #{title}, #{content}, #{writer_id}, #{writer_nick}, #{hit}, sysdate)
+	</insert>
 
 </mapper>
