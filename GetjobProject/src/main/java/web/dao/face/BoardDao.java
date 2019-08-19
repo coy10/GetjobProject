@@ -15,5 +15,5 @@ public interface BoardDao {
 	
 	public void hit(int board_no);
 
-
+	public void insertWrite(Board board);
 }

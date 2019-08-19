@@ -2,6 +2,8 @@ package web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,43 @@ public class BoardController {
 		logger.info("보드넘버"+board_no);
 		
 		logger.info("보드 뷰");
+	
+	}
+	
+	@RequestMapping(value="/board/write", method=RequestMethod.GET)
+	public void write() {
+		
+		logger.info("글쓰기");
+	
+	}
+	
+	@RequestMapping(value="/board/write", method=RequestMethod.POST)
+	public String writeProc(Board board, HttpSession session) {
+		
+		logger.info("글쓰기전송");
+		
+		board.setWriter_id((String)session.getAttribute("loginid"));
+		board.setWriter_nick((String)session.getAttribute("loginnick"));
+		
+		logger.info("글쓴내용"+board);
+		
+		boardService.insertWrite(board);
+		
+		return "redirect:/board/list";
+	
+	}
+	
+	@RequestMapping(value="/board/update", method=RequestMethod.GET)
+	public void update() {
+		
+		logger.info("수정");
+	
+	}
+	
+	@RequestMapping(value="/board/update", method=RequestMethod.POST)
+	public void updateProc() {
+		
+		logger.info("수정보안");
 	
 	}
 	
