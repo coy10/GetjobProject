@@ -23,5 +23,17 @@
 	<select id="selectCntAll" resultType="int">
 		SELECT COUNT(*) FROM board
 	</select>
+	
+	<select id="selectBoardByBoardno" parameterType="int" resultType="web.dto.Board">
+		SELECT board_no, title, writer_id, writer_nick, content, hit, write_date FROM board
+		WHERE board_no=#{board_no}
+	</select>
+
+	<update id="hit" parameterType="int">
+		UPDATE board
+		SET hit=hit+1
+		WHERE board_no=#{board_no}
+		
+	</update>
 
 </mapper>
