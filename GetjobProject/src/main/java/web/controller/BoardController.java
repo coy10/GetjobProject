@@ -91,10 +91,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/update", method=RequestMethod.POST)
-	public void updateProc() {
+	public void updateProc(Board board, HttpSession session) {
 		
 		logger.info("수정보안");
 	
+
 	}
 	
 }
