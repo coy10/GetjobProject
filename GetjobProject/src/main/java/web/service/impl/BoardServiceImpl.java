@@ -45,7 +45,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board boardView(Board viewBoard) {
 		
-		return null;
+		return boardDao.selectBoardByBoardno(viewBoard);
 	}
 
 	@Override
