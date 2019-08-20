@@ -39,5 +39,8 @@
 		INSERT INTO board(board_no, title, content, writer_id, writer_nick, hit, write_date)
 		VALUES (board_seq.nextval, #{title}, #{content}, #{writer_id}, #{writer_nick}, #{hit}, sysdate)
 	</insert>
-
+	
+	<update id="updateBoard" parameterType="web.dto.Board">
+		UPDATE board
+	</update>
 </mapper>

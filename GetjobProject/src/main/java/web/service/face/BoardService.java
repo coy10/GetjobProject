@@ -14,4 +14,8 @@ public interface BoardService {
 	public Board view(int board_no);
 	
 	public void insertWrite(Board board);
+	
+	public Board boardView(Board viewBoard);
+	
+	public Board boardUpdate(Board updateBoard);
 }

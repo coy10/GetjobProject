@@ -41,6 +41,18 @@ public class BoardServiceImpl implements BoardService {
 	public void insertWrite(Board board) {
 		boardDao.insertWrite(board);
 	}
+
+	@Override
+	public Board boardView(Board viewBoard) {
+		
+		return null;
+	}
+
+	@Override
+	public Board boardUpdate(Board updateBoard) {
+
+		return null;
+	}
 	
 
 }
