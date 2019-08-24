@@ -7,7 +7,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	// 추천버튼 초기화
-	if(${recommend == true}) {
+	if(${recommend.recommend_cnt == true}) { 
 		$("#btnRecommend")
 			.toggleClass("btn-danger")
 			.text("추천 취소");
@@ -19,18 +19,17 @@ $(document).ready(function() {
 	
 	// 추천 수행
 	$("#btnRecommend").click(function() {
-		
 		$.ajax({
 			type: "get"
 			, url: "/board/recommend"
 			, dataType: "json"
 			, data: {
-				writer_id: '${sessionScope.id }'
-				, board_no: '${board.board_no }'
+				writer_id: '${sessionScope.loginid }'
+				, board_no: '${view.board_no }'
 			}
-			, success: function(data) {
-				console.log(data);
-				if(data.result) {
+			, success: function(response) {
+				console.log(response);
+				if(response.recommend_cnt == true) {
 					$("#btnRecommend")
 						.text("추천 취소")
 						.toggleClass("btn-primary")
@@ -41,7 +40,7 @@ $(document).ready(function() {
 						.toggleClass("btn-danger")
 						.toggleClass("btn-primary");
 				}
-				$("#recommend").text(data.recommend);
+// 				$("#recommend").text(data.recommend);
 			}
 			, error: function(e) {
 				console.log(e.responseText);
@@ -118,7 +117,7 @@ function deleteComment(commentNo) {
 <div class="container">
 <div>
 <h1 class="pull-left">게시글 상세보기</h1>
-<button id="btnRecommend" class="btn pull-right">추천</button>
+<button id="btnRecommend" class="btn pull-right" type="button">추천</button>
 </div>
 <div class="clearfix"></div>
 <hr>
@@ -139,7 +138,7 @@ function deleteComment(commentNo) {
 <!-- 버튼 영역 -->
 <div class="text-center">
 	<a href="/board/list"><button class="btn btn-default">목록</button></a>
-	<c:if test="${id eq view.writer_id }">
+	<c:if test="${loginid eq view.writer_id}">
 		<a href="/board/update?board_no=${view.board_no }"><button class="btn btn-primary">수정</button></a>
 		<a href="/board/delete?board_no=${view.board_no }"><button class="btn btn-danger">삭제</button></a>
 	</c:if>

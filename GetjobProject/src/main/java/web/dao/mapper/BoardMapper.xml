@@ -42,5 +42,31 @@
 	
 	<update id="updateBoard" parameterType="web.dto.Board">
 		UPDATE board
+		SET content= #{content},
+		title = #{title}
+		WHERE board_no = #{board_no}
 	</update>
+	
+	<delete id="deleteBoard" parameterType="web.dto.Board">
+		DELETE board
+		WHERE board_no = #{board_no}
+	</delete>
+	
+	<insert id="insertRecommend" parameterType="web.dto.Recommend">
+		INSERT INTO recommend(writer_id, board_no)
+		VALUES( #{writer_id}, #{board_no} )
+	</insert>
+	
+	<delete id="deleteRecommend" parameterType="web.dto.Recommend">
+		DELETE recommend
+		WHERE writer_id = #{writer_id} and board_no = #{board_no}
+	</delete>
+	
+	<select id="selectMyCntRecommend" parameterType="web.dto.Recommend" resultType="int">
+		SELECT COUNT(*) FROM recommend
+		WHERE writer_id = #{writer_id} and board_no = #{board_no}
+	</select>
+	
+	<select id="selectCntRecommend"></select>
+	
 </mapper>

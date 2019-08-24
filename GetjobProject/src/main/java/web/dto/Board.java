@@ -11,13 +11,25 @@ public class Board {
 	private String writer_nick;
 	private int hit;
 	private Date write_date;
+	private boolean recommend_cnt;
 	
+	
+	
+	
+
+
 	@Override
 	public String toString() {
-		return "Board [board_no=" + board_no + ", title=" + title + ", content=" + content + ", writer_id="
-				+ writer_id + ", writer_nick=" + writer_nick + ", hit=" + hit + ", write_date=" + write_date + "]";
+		return "Board [board_no=" + board_no + ", title=" + title + ", content=" + content + ", writer_id=" + writer_id
+				+ ", writer_nick=" + writer_nick + ", hit=" + hit + ", write_date=" + write_date + ", recommend_cnt="
+				+ recommend_cnt + "]";
 	}
-	
+	public boolean isRecommend_cnt() {
+		return recommend_cnt;
+	}
+	public void setRecommend_cnt(boolean recommend_cnt) {
+		this.recommend_cnt = recommend_cnt;
+	}
 	public int getBoard_no() {
 		return board_no;
 	}
