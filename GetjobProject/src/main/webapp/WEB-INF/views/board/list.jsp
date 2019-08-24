@@ -22,7 +22,7 @@
 		<th>조회수</th>
 		<th>작성일</th>
 	</tr>
-	
+
 <c:forEach items="${list1 }" var="i">
 <tr>
 	<td>${i.board_no}</td>

@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <!-- Naver SmartEditor -->
-<script type="text/javascript"
- src="/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<!-- <script type="text/javascript" -->
+<!--  src="/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script> -->
+
 
 <script type="text/javascript">
 //‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
@@ -16,15 +17,17 @@ function submitContents(elClickedObj) {
     } catch(e) {}
 }
 
+
 $(document).ready(function() {
 	$("#btnWrite").click(function() {
 		submitContents($(this));
 	});
 	
-	$("#title").focus();
+// 	$("#title").focus();
 
-	$("#cancel").click(function() {
-		history.back(-1);
+	$("#btnCancel").click(function() {
+		history.go(-1);
+		console.log('취소버튼');
 	});
 
 });
@@ -54,8 +57,7 @@ $(document).ready(function() {
 
 	<div class="text-center">
 		<button class="btn btn-primary" id="btnWrite">작성</button>
-		<input type="reset" id="cancel"
-			class="btn btn-danger" value="취소"/>
+		<button class="btn btn-primary" id="btnCancel">취소</button>
 	</div>
 	
 </form>
@@ -64,17 +66,17 @@ $(document).ready(function() {
 
 <!-- <textarea> 태그 아래쪽에 스마트에디터 초기화코드 삽입 -->
 <script type="text/javascript">
-var oEditors = [];
-nhn.husky.EZCreator.createInIFrame({
-    oAppRef: oEditors,
-    elPlaceHolder: "content",
-    sSkinURI: "/resources/smarteditor/SmartEditor2Skin.html",
-    fCreator: "createSEditor2",
-    htParams : {
-    	bUseToolbar: true, // 툴바 사용여부
-    	bUseVerticalResizer: false, //입력창 크기 조절바
-    	bUseModeChanger: true //모드 탭
-    }
-});
+// var oEditors = [];
+// nhn.husky.EZCreator.createInIFrame({
+//     oAppRef: oEditors,
+//     elPlaceHolder: "content",
+//     sSkinURI: "/resources/smarteditor/SmartEditor2Skin.html",
+//     fCreator: "createSEditor2",
+//     htParams : {
+//     	bUseToolbar: true, // 툴바 사용여부
+//     	bUseVerticalResizer: false, //입력창 크기 조절바
+//     	bUseModeChanger: true //모드 탭
+//     }
+// });
 </script>
 
