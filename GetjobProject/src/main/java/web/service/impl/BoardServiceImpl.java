@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import web.dao.face.BoardDao;
 import web.dto.Board;
+import web.dto.Recommend;
 import web.service.face.BoardService;
 import web.util.Paging;
 
@@ -50,8 +51,50 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Board boardUpdate(Board updateBoard) {
+		boardDao.updateBoard(updateBoard);
+		return updateBoard;
+	}
 
-		return null;
+	@Override
+	public Board boardDelete(Board deleteBoard) {
+		boardDao.deleteBoard(deleteBoard);
+		return deleteBoard;
+	}
+
+
+	@Override
+	public void recommend(Recommend recommendBoard) {
+		
+		if(boardDao.selectMyCntRecommend(recommendBoard)==0) {
+			boardDao.insertRecommend(recommendBoard);
+		}
+		else {
+			boardDao.deleteRecommend(recommendBoard);
+		}
+		
+	}
+
+	@Override
+	public Recommend selectMyCntRecommend(Recommend recommend) {
+		
+		if(boardDao.selectMyCntRecommend(recommend)==0) {
+			recommend.setRecommend_cnt(false);
+		}
+		else {
+			recommend.setRecommend_cnt(true);
+		}
+	
+		
+		return recommend;
+	}
+
+	@Override
+	public Recommend selectCntRecommend(Recommend recommend) {
+
+		recommend.setTotal(boardDao.selectCntRecommend(recommend));
+		
+		return recommend;
+		
 	}
 	
 

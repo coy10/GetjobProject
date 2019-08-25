@@ -29,6 +29,7 @@ $(document).ready(function() {
 
 });
 
+
 </script>
 
 <div class="container">
@@ -55,7 +56,7 @@ $(document).ready(function() {
 	<div class="text-center">
 		<button class="btn btn-primary" id="btnWrite">작성</button>
 		<input type="reset" id="cancel"
-			class="btn btn-danger" value="취소"/>
+			 value="취소" onclick="history.back(-1);"/>
 	</div>
 	
 </form>

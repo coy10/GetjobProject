@@ -11,13 +11,22 @@ public class Board {
 	private String writer_nick;
 	private int hit;
 	private Date write_date;
+	private int recommend;
+	
 	
 	@Override
 	public String toString() {
-		return "Board [board_no=" + board_no + ", title=" + title + ", content=" + content + ", writer_id="
-				+ writer_id + ", writer_nick=" + writer_nick + ", hit=" + hit + ", write_date=" + write_date + "]";
+		return "Board [board_no=" + board_no + ", title=" + title + ", content=" + content + ", writer_id=" + writer_id
+				+ ", writer_nick=" + writer_nick + ", hit=" + hit + ", write_date=" + write_date + ", recommend="
+				+ recommend + "]";
 	}
 	
+	public int getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
+	}
 	public int getBoard_no() {
 		return board_no;
 	}

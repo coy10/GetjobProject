@@ -9,8 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript"
- src="http://code/jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script type="text/javascript">
 /* 모든 페이지에 적용되는 자바스크립트 */ 

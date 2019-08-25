@@ -12,7 +12,7 @@
 		SELECT * FROM (
 			SELECT rownum rnum, B.* FROM(
 				SELECT
-				board_no, title, content, writer_id, writer_nick, hit, write_date FROM board
+				board_no, title, content, writer_id, writer_nick, hit, write_date,(SELECT COUNT(*) FROM recommend WHERE board_no = board.board_no) AS recommend FROM board
 				ORDER BY board_no DESC
 			) B
 		ORDER BY rnum
@@ -42,5 +42,38 @@
 	
 	<update id="updateBoard" parameterType="web.dto.Board">
 		UPDATE board
+		SET title=#{title},content=#{content}
+		WHERE board_no=#{board_no}
 	</update>
+	
+	<delete id="deleteBoard" parameterType="web.dto.Board">
+		DELETE
+		FROM board
+		WHERE board_no=#{board_no}
+	</delete>
+	
+	<insert id="insertRecommend" parameterType="web.dto.Recommend">
+		INSERT INTO recommend(writer_id, board_no)
+		VALUES(#{writer_id},#{board_no})
+	</insert>
+	
+	<delete id="deleteRecommend" parameterType="web.dto.Recommend">
+		DELETE 
+		FROM recommend
+		WHERE writer_id=#{writer_id} and board_no=#{board_no}
+	</delete>
+	
+	<select id="selectMyCntRecommend" parameterType="web.dto.Recommend" resultType="int">
+		SELECT COUNT(*) 
+		FROM recommend
+		WHERE writer_id=#{writer_id} and board_no=#{board_no}
+	</select>
+	
+	<select id="selectCntRecommend" parameterType="web.dto.Recommend" resultType="int">
+		SELECT COUNT(*) 
+		FROM recommend
+		WHERE board_no = #{board_no}
+	</select>
+	
+	
 </mapper>

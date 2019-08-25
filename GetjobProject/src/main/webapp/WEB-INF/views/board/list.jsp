@@ -20,10 +20,11 @@
 		<th>작성자</th>
 		<th>닉네임</th>
 		<th>조회수</th>
+		<th>추천수</th>
 		<th>작성일</th>
 	</tr>
 	
-<c:forEach items="${list1 }" var="i">
+<c:forEach items="${list }" var="i">
 <tr>
 	<td>${i.board_no}</td>
 	<td><a href="/board/view?board_no=${i.board_no}">${i.title }</a></td>
@@ -31,13 +32,14 @@
 	<td>${i.writer_id}</td>
 	<td>${i.writer_nick }</td>
 	<td>${i.hit }</td>
+	<td>${i.recommend }</td>
 	<td><fmt:formatDate value="${i.write_date }" pattern="yyyy-MM-dd" /></td>
 	
 </tr>
 </c:forEach>
 </table>
 <div>
-	<a href="/board/main"><button>메인으로</button></a>
+	<a href="/member/main"><button>메인으로</button></a>
 	<a href="/board/write"><button>글쓰기</button></a>
 	
 </div>

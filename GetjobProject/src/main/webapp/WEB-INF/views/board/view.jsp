@@ -6,8 +6,8 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	// 추천버튼 초기화
-	if(${recommend == true}) {
+	// 추천버튼 초기화 recommend.dto이름
+	if(${recommend.recommend_cnt == true}) {
 		$("#btnRecommend")
 			.toggleClass("btn-danger")
 			.text("추천 취소");
@@ -25,12 +25,12 @@ $(document).ready(function() {
 			, url: "/board/recommend"
 			, dataType: "json"
 			, data: {
-				writer_id: '${sessionScope.id }'
-				, board_no: '${board.board_no }'
+				writer_id: '${sessionScope.loginid }'
+				, board_no: '${view.board_no }'
 			}
 			, success: function(data) {
 				console.log(data);
-				if(data.result) {
+				if(data.recommend_cnt==true) {
 					$("#btnRecommend")
 						.text("추천 취소")
 						.toggleClass("btn-primary")
@@ -41,7 +41,8 @@ $(document).ready(function() {
 						.toggleClass("btn-danger")
 						.toggleClass("btn-primary");
 				}
-				$("#recommend").text(data.recommend);
+				$("#recommend")
+				.text(data.total);
 			}
 			, error: function(e) {
 				console.log(e.responseText);
@@ -131,7 +132,7 @@ function deleteComment(commentNo) {
 이름 : ${view.writer_nick }<br>
 본문 : ${view.content }<br>
 조회수 : ${view.hit }<br>
-<%-- 추천수 : <span id="recommend">${view.recommend }</span><br> --%>
+추천수 : <span id="recommend">${recommend.total }</span><br>
 작성일 : <fmt:formatDate value="${view.write_date }"
 				pattern="yy-MM-dd HH:mm:ss" /><br>
 </div>	<!-- 상세보기 영역 end -->
@@ -139,7 +140,7 @@ function deleteComment(commentNo) {
 <!-- 버튼 영역 -->
 <div class="text-center">
 	<a href="/board/list"><button class="btn btn-default">목록</button></a>
-	<c:if test="${id eq view.writer_id }">
+	<c:if test="${loginid eq view.writer_id }">
 		<a href="/board/update?board_no=${view.board_no }"><button class="btn btn-primary">수정</button></a>
 		<a href="/board/delete?board_no=${view.board_no }"><button class="btn btn-danger">삭제</button></a>
 	</c:if>
