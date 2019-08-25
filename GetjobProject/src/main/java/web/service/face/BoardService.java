@@ -24,6 +24,8 @@ public interface BoardService {
 	
 	public void recommend(Recommend recommendBoard);
 	
-	public Recommend selectreCntRecommend(Recommend recommend);
+	public Recommend selectCntRecommend(Recommend recommend);
+	
+	public Recommend totalCntRecommend(Recommend recommend);
 	
 }

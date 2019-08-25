@@ -30,4 +30,6 @@ public interface BoardDao {
 	
 	public int selectMyCntRecommend(Recommend recommend);
 	
+	public int selectCntRecommend(Recommend recommend);
+	
 }

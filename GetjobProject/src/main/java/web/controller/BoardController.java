@@ -48,7 +48,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/view", method=RequestMethod.GET)
-	public void view(Model model, int board_no, Recommend recommend) {
+	public void view(Model model, int board_no, Recommend recommend,HttpSession session) {
 		
 		Board view= boardService.view(board_no);
 		
@@ -61,16 +61,18 @@ public class BoardController {
 		logger.info("보드 뷰");
 		
 		recommend.setBoard_no(view.getBoard_no());
-		recommend.setWriter_id(view.getWriter_id());
+		recommend.setWriter_id((String)session.getAttribute("loginid"));
 	
-		boardService.selectreCntRecommend(recommend);
+		boardService.selectCntRecommend(recommend);
+		
+		boardService.totalCntRecommend(recommend);
 		
 		model.addAttribute("recommend", recommend);
 		
 		logger.info(recommend.toString());
 	
 		
-		model.addAttribute("recommend", recommend);
+//		model.addAttribute("recommend", recommend);
 		
 	}
 	
@@ -131,7 +133,8 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	@RequestMapping(value="/board/recommend", method=RequestMethod.GET)
-	public @ResponseBody Recommend recommend(Recommend recommend,HttpSession session,Model model) {
+	@ResponseBody
+	public Recommend recommend(Recommend recommend,HttpSession session,Model model) {
 		
 		logger.info("추천 : "+recommend.toString());
 		
@@ -142,7 +145,11 @@ public class BoardController {
 		
 		logger.info("추천적용 후  : " + recommend.toString());
 		
-		boardService.selectreCntRecommend(recommend);
+		boardService.selectCntRecommend(recommend);
+		
+		boardService.totalCntRecommend(recommend);
+		
+		logger.info("마지막 recommend:"+recommend);
 		
 		model.addAttribute("recommend", recommend);
 		

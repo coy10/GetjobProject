@@ -21,6 +21,7 @@
 		<th>닉네임</th>
 		<th>조회수</th>
 		<th>작성일</th>
+		<th>추천수</th>
 	</tr>
 
 <c:forEach items="${list1 }" var="i">
@@ -32,7 +33,7 @@
 	<td>${i.writer_nick }</td>
 	<td>${i.hit }</td>
 	<td><fmt:formatDate value="${i.write_date }" pattern="yyyy-MM-dd" /></td>
-	
+	<td>${i.recommend }</td>
 </tr>
 </c:forEach>
 </table>

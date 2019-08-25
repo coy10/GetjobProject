@@ -78,7 +78,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Recommend selectreCntRecommend(Recommend recommend) {
+	public Recommend selectCntRecommend(Recommend recommend) {
 		
 		if(boardDao.selectMyCntRecommend(recommend)==0) {
 			recommend.setRecommend_cnt(false);
@@ -86,6 +86,14 @@ public class BoardServiceImpl implements BoardService {
 		else {
 			recommend.setRecommend_cnt(true);
 		}
+		return recommend;
+	}
+
+	@Override
+	public Recommend totalCntRecommend(Recommend recommend) {
+		
+		recommend.setTotal(boardDao.selectCntRecommend(recommend)); 
+		
 		return recommend;
 	}
 
