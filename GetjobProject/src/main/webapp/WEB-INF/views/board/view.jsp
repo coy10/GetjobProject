@@ -40,6 +40,8 @@ $(document).ready(function() {
 						.toggleClass("btn-danger")
 						.toggleClass("btn-primary");
 				}
+				$("#recommend")
+				.text(response.total);
 // 				$("#recommend").text(data.recommend);
 			}
 			, error: function(e) {
@@ -130,7 +132,7 @@ function deleteComment(commentNo) {
 이름 : ${view.writer_nick }<br>
 본문 : ${view.content }<br>
 조회수 : ${view.hit }<br>
-<%-- 추천수 : <span id="recommend">${view.recommend }</span><br> --%>
+추천수 : <span id="recommend">${recommend.total }</span><br>
 작성일 : <fmt:formatDate value="${view.write_date }"
 				pattern="yy-MM-dd HH:mm:ss" /><br>
 </div>	<!-- 상세보기 영역 end -->
