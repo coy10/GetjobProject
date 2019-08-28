@@ -57,7 +57,7 @@ $(document).ready(function() {
 
 	<div class="text-center">
 		<button class="btn btn-primary" id="btnWrite">작성</button>
-		<button class="btn btn-primary" id="btnCancel">취소</button>
+		<button class="btn btn-danger" id="btnCancel">취소</button>
 	</div>
 	
 </form>

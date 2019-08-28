@@ -1,5 +1,6 @@
 package web.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import web.dao.face.BoardDao;
 import web.dto.Board;
+import web.dto.Comment;
 import web.dto.Recommend;
 import web.service.face.BoardService;
 import web.util.Paging;
@@ -95,6 +97,26 @@ public class BoardServiceImpl implements BoardService {
 		recommend.setTotal(boardDao.selectCntRecommend(recommend)); 
 		
 		return recommend;
+	}
+
+	@Override
+	public List<Comment> commentList(Board board) {
+		
+		return boardDao.selectCommentByBoardno(board);
+	}
+
+	@Override
+	public void commentInsert(Comment comment) {
+		
+		boardDao.insertComment(comment);
+		
+	}
+
+	@Override
+	public void commentDelete(Comment comment) {
+		
+		boardDao.deleteComment(comment);
+		
 	}
 
 	

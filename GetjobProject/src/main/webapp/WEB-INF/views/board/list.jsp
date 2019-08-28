@@ -8,6 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.listTd{
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 <h1>리스트</h1>
@@ -26,19 +31,19 @@
 
 <c:forEach items="${list1 }" var="i">
 <tr>
-	<td>${i.board_no}</td>
-	<td><a href="/board/view?board_no=${i.board_no}">${i.title }</a></td>
-	<td>${i.content }</td>
-	<td>${i.writer_id}</td>
-	<td>${i.writer_nick }</td>
-	<td>${i.hit }</td>
-	<td><fmt:formatDate value="${i.write_date }" pattern="yyyy-MM-dd" /></td>
-	<td>${i.recommend }</td>
+	<td class="listTd">${i.board_no}</td>
+	<td class="listTd"><a href="/board/view?board_no=${i.board_no}">${i.title }</a></td>
+	<td class="listTd">${i.content }</td>
+	<td class="listTd">${i.writer_id}</td>
+	<td class="listTd">${i.writer_nick }</td>
+	<td class="listTd">${i.hit }</td>
+	<td class="listTd"><fmt:formatDate value="${i.write_date }" pattern="yyyy-MM-dd" /></td>
+	<td class="listTd">${i.recommend }</td>
 </tr>
 </c:forEach>
 </table>
 <div>
-	<a href="/board/main"><button>메인으로</button></a>
+	<a href="/member/main"><button>메인으로</button></a>
 	<a href="/board/write"><button>글쓰기</button></a>
 	
 </div>

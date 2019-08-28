@@ -74,4 +74,19 @@
 		WHERE board_no = #{board_no}
 	</select>
 	
+	<select id="selectCommentByBoardno"  parameterType="web.dto.Board" resultType="web.dto.Comment">
+		SELECT * FROM commentTB
+		WHERE board_no = #{board_no}
+		ORDER BY comment_no DESC
+	</select>
+	
+	<insert id="insertComment" parameterType="web.dto.Comment">
+		INSERT INTO commentTB(comment_no, board_no, writer_nick, content, writtendate)
+		VALUES(commentTB_seq.nextval, #{board_no} , #{writer_nick}, #{content}, sysdate)
+	</insert>
+	
+	<delete id="deleteComment" parameterType="web.dto.Comment">
+		DELETE commentTB
+		WHERE comment_no = #{comment_no}
+	</delete>
 </mapper>
