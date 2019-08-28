@@ -3,6 +3,7 @@ package web.service.face;
 import java.util.List;
 
 import web.dto.Board;
+import web.dto.Comment;
 import web.dto.Recommend;
 import web.util.Paging;
 
@@ -27,5 +28,11 @@ public interface BoardService {
 	public Recommend selectCntRecommend(Recommend recommend);
 	
 	public Recommend totalCntRecommend(Recommend recommend);
+	
+	public List<Comment> commentList(Board board);
+	
+	public void commentInsert(Comment comment);
+	
+	public void commentDelete(Comment comment);
 	
 }

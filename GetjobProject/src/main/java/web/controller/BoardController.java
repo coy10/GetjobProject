@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import web.dto.Board;
+import web.dto.Comment;
 import web.dto.Recommend;
 import web.service.face.BoardService;
 import web.util.Paging;
@@ -71,8 +72,11 @@ public class BoardController {
 		
 		logger.info(recommend.toString());
 	
+		List<Comment> commentlist = boardService.commentList(view);
 		
-//		model.addAttribute("recommend", recommend);
+		logger.info("댓글 : "+commentlist);
+		
+		model.addAttribute("comment", commentlist);
 		
 	}
 	
@@ -154,5 +158,28 @@ public class BoardController {
 		model.addAttribute("recommend", recommend);
 		
 		return recommend;
+	}
+	
+	@RequestMapping(value="/board/insertComment", method=RequestMethod.POST)
+	public String commentInsert(Comment comment) {
+		
+		logger.info("댓글보내기:"+comment.toString());
+		
+		boardService.commentInsert(comment);
+		
+		return "redirect:/board/view?board_no="+comment.getBoard_no();
+	}
+	
+	@RequestMapping(value="/board/deleteComment", method=RequestMethod.POST)
+	@ResponseBody
+	public Comment commentDelete(Comment comment) {
+		
+		boardService.commentDelete(comment);
+		
+		logger.info(" 코멘트 넘버가져와야댐:"+comment);
+		
+		
+		return comment;
+		
 	}
 }

@@ -3,6 +3,7 @@ package web.dao.face;
 import java.util.List;
 
 import web.dto.Board;
+import web.dto.Comment;
 import web.dto.Recommend;
 import web.util.Paging;
 
@@ -32,4 +33,9 @@ public interface BoardDao {
 	
 	public int selectCntRecommend(Recommend recommend);
 	
+	public List<Comment> selectCommentByBoardno(Board board);
+	
+	public void insertComment(Comment comment);
+	
+	public void deleteComment(Comment comment);
 }
