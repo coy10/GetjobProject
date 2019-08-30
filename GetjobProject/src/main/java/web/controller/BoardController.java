@@ -182,4 +182,11 @@ public class BoardController {
 		return comment;
 		
 	}
+	
+	@RequestMapping(value="/board/boardError", method=RequestMethod.GET)
+	public void interceptorBoard() {
+		
+	
+		
+	}
 }
