@@ -12,6 +12,19 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
+	<interceptors>
+		<interceptor>
+			<mapping path="/board/write"/>
+			<exclude-mapping path="/board/boardError"/>
+			<beans:bean class="web.interceptor.BoardInterceptor" />
+		</interceptor><interceptor>
+			<mapping path="/board/view"/>
+			<exclude-mapping path="/board/boardError"/>
+			<beans:bean class="web.interceptor.BoardInterceptor" />
+		</interceptor>
+	</interceptors>
+
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -41,13 +54,6 @@
 		<!-- 자바 스프링 빈 기반의 ViewResolver -->
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0" /> <!-- 우선순위 -->
-	</beans:bean>
-	
-	<!-- MultipartResolver -->
-	<!-- 파일업로드 처리 클래스 -->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
-		<beans:property name="maxUploadSize" value="10485760" /> <!-- 10MB -->
 	</beans:bean>
 	
 	<context:component-scan base-package="com.getjob.www,web" />

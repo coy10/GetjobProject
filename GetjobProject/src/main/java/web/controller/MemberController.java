@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import web.dto.Member;
 import web.service.face.MemberService;
@@ -73,6 +74,13 @@ public class MemberController {
 		
 		return "redirect:/member/main";
 	}
-	
-	
+	@RequestMapping(value="/member/idcheck", method=RequestMethod.POST)
+	@ResponseBody
+	public boolean idcheck(Member member) {
+		
+		boolean check = memberService.idcheck(member);
+		
+		
+		return check;
+	}
 }
