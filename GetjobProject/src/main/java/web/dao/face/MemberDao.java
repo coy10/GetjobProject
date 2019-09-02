@@ -9,4 +9,6 @@ public interface MemberDao {
 	public int selectCntMember(Member meber);
 	
 	public Member selectMember(Member meber);
+	
+	public int idcheckCntMember(Member member);
 }

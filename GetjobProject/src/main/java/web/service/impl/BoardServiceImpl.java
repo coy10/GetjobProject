@@ -42,6 +42,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void insertWrite(Board board) {
+		
+		
+		if(board.getTitle()=="" || board.getTitle()==null) {
+			board.setTitle("(제목없음)");
+		}
+		
 		boardDao.insertWrite(board);
 	}
 

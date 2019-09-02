@@ -20,4 +20,9 @@
 		SELECT * FROM member 
 		WHERE id=#{id}
 	</select>
+	
+	<select id="idcheckCntMember" parameterType="web.dto.Member" resultType="int">
+		SELECT COUNT(*) FROM member
+		WHERE id=#{id}
+	</select>
 </mapper>

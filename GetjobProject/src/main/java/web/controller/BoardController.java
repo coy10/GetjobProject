@@ -184,9 +184,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/boardError", method=RequestMethod.GET)
-	public void interceptorBoard() {
-		
-	
+	public void error() {
 		
 	}
 }

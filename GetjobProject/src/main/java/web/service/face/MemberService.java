@@ -9,4 +9,6 @@ public interface MemberService {
 	public boolean login(Member member);
 	
 	public Member selectByMember(Member member);
+	
+	public boolean idcheck(Member member);
 }

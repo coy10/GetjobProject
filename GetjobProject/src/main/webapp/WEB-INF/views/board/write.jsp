@@ -4,23 +4,17 @@
 <!-- Naver SmartEditor -->
 <!-- <script type="text/javascript" -->
 <!--  src="/resources/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script> -->
+<!-- include summernote css/js -->
 
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 
 <script type="text/javascript">
-//‘저장’ 버튼을 누르는 등 저장을 위한 액션을 했을 때 submitContents가 호출된다고 가정한다.
-function submitContents(elClickedObj) {
-    // 에디터의 내용이 textarea에 적용된다.
-    oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-
-    try {
-        elClickedObj.form.submit();
-    } catch(e) {}
-}
 
 
 $(document).ready(function() {
 	$("#btnWrite").click(function() {
-		submitContents($(this));
+			$("form").submit();
 	});
 	
 // 	$("#title").focus();
@@ -29,6 +23,14 @@ $(document).ready(function() {
 		history.go(-1);
 		console.log('취소버튼');
 	});
+	
+    $('#summernote').summernote({
+        height: 300,          // 기본 높이값
+         minHeight: null,      // 최소 높이값(null은 제한 없음)
+         maxHeight: null,      // 최대 높이값(null은 제한 없음)
+         focus: true,          // 페이지가 열릴때 포커스를 지정함
+         lang: 'ko-KR'         // 한국어 지정(기본값은 en-US)
+     });
 
 });
 
@@ -52,31 +54,17 @@ $(document).ready(function() {
 	</div>
 	<div class="form-group">
 		<label for="content">본문</label>
-		<textarea rows="10" style="width:100%" id="content" name="content"></textarea>
+		<textarea rows="10" style="width:100%" id="summernote" name="content"></textarea>
 	</div>
 
 	<div class="text-center">
-		<button class="btn btn-primary" id="btnWrite">작성</button>
-		<button class="btn btn-danger" id="btnCancel">취소</button>
+		<button type="button" class="btn btn-primary" id="btnWrite">작성</button>
+		<button type="button" class="btn btn-danger" id="btnCancel">취소</button>
 	</div>
 	
 </form>
 
 </div>
 
-<!-- <textarea> 태그 아래쪽에 스마트에디터 초기화코드 삽입 -->
-<script type="text/javascript">
-// var oEditors = [];
-// nhn.husky.EZCreator.createInIFrame({
-//     oAppRef: oEditors,
-//     elPlaceHolder: "content",
-//     sSkinURI: "/resources/smarteditor/SmartEditor2Skin.html",
-//     fCreator: "createSEditor2",
-//     htParams : {
-//     	bUseToolbar: true, // 툴바 사용여부
-//     	bUseVerticalResizer: false, //입력창 크기 조절바
-//     	bUseModeChanger: true //모드 탭
-//     }
-// });
-</script>
+
 

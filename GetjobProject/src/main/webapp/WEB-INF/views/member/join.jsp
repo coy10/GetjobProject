@@ -9,6 +9,42 @@ window.onload = function() {
 	
 	document.getElementById("id").focus();
 };
+
+var check = false;
+
+$(document).ready(function(){
+	$("#idcheck").click(function(){
+		$.ajax({
+			type:"post"
+			,url:"/member/idcheck"
+			,dataType:"json"
+			,data:{
+				id : $('#id').val()
+			}
+		,success:function(response){
+			console.log(response);
+			
+			if(response==true){
+				alert("사용가능합니다");
+				check = true;
+			}
+			else{
+				alert("중복된 아이디입니다");
+				check = false;
+			}
+		}
+		
+		})
+	})
+	
+	$("#join").click(function(){
+		if(check==true){
+			$("form").submit();
+		}else{
+			alert("사용가능한 아이디를 다시 입력해주세요");
+		}
+	})
+})
 </script>
 
 <div class="container">
@@ -24,6 +60,7 @@ window.onload = function() {
 			<input type="text" class="form-control" 
 				id="id" name="id" placeholder="Id"/>
 		</div>
+		<button type="button" id="idcheck">중복확인</button>
 	</div>
 
 	<div class="form-group">
@@ -44,7 +81,7 @@ window.onload = function() {
 
 	<div class="form-group">
 		<div class="col-xs-offset-2 col-xs-10">		
-			<button class="btn btn-primary">가입</button>
+			<button type="button" class="btn btn-primary" id="join">가입</button>
 			<input type="reset" id="cancel"
 				class="btn btn-danger" value="취소"/>
 		</div>

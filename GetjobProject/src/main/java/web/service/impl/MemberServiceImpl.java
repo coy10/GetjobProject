@@ -30,4 +30,14 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.selectMember(member);
 	}
+
+	@Override
+	public boolean idcheck(Member member) {
+		
+		if(memberDao.idcheckCntMember(member)>0) {
+			return false;
+		}
+		
+		return true;
+	}
 }
