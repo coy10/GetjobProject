@@ -17,13 +17,43 @@
 				FROM board
 				ORDER BY board_no DESC
 			) B
+			<where>
+				<if test="select!= null and search!=null">
+					<choose>
+						<when test="select.equals('title')">
+							title LIKE '%'||#{search}||'%'
+						</when>
+						<when test="select.equals('content')">
+							content LIKE '%'||#{search}||'%'
+						</when>
+						<when test="select.equals('writer_nick')">
+							writer_nick LIKE '%'||#{search}||'%'
+						</when>
+					</choose>
+				</if>
+			</where>
 		ORDER BY rnum
 		)
 		WHERE rnum BETWEEN #{startNo} AND #{endNo}
 	</select>
 
-	<select id="selectCntAll" resultType="int">
+	<select id="selectCntAll" resultType="int" parameterType="map">
 		SELECT COUNT(*) FROM board
+		<where>
+			<if test="select!= null and search!=null">
+					<choose>
+						<when test="select.equals('title')">
+							title LIKE '%'||#{search}||'%'
+						</when>
+						<when test="select.equals('content')">
+							content LIKE '%'||#{search}||'%'
+						</when>
+						<when test="select.equals('writer_nick')">
+							writer_nick LIKE '%'||#{search}||'%'
+						</when>
+					</choose>
+				</if>
+			</where>
 	</select>
 	
 	<select id="selectBoardByBoardno" parameterType="int" resultType="web.dto.Board" >

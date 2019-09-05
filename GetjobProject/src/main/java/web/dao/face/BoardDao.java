@@ -1,6 +1,7 @@
 package web.dao.face;
 
 import java.util.List;
+import java.util.Map;
 
 import web.dto.Board;
 import web.dto.Comment;
@@ -11,7 +12,7 @@ public interface BoardDao {
 	
 	public List selectAll(Paging paging);
 	
-	public int selectCntAll();
+	public int selectCntAll(Map map);
 	
 	public Board selectBoardByBoardno(int board_no);
 	

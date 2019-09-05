@@ -1,7 +1,8 @@
 package web.service.impl;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,11 +26,18 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Paging getCurPage(int curPage) {
+	public Paging getCurPage(int curPage, String select, String search) {
 		
-		int totalCount = boardDao.selectCntAll();
+		Map map = new HashMap();
+		map.put("search", search);
+		map.put("select", select);
+		
+		int totalCount = boardDao.selectCntAll(map);
 		
 		Paging paging = new Paging(totalCount,curPage);
+		
+		paging.setSelect(select);
+		paging.setSearch(search);
 		
 		return paging;
 	}

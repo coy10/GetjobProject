@@ -30,13 +30,13 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/board/list", method=RequestMethod.GET)
-	public void list(Model model, @RequestParam(defaultValue = "1") int curPage, String search, String select) {
+	public void list(Model model, @RequestParam(defaultValue = "1")int curPage, String search, String select) {
 	
 		logger.info("select : "+select);
 		
 		logger.info("search : "+search);
 		
-		Paging paging = boardService.getCurPage(curPage);
+		Paging paging = boardService.getCurPage(curPage, select, search);
 		
 		model.addAttribute("paging", paging);
 		
@@ -44,7 +44,7 @@ public class BoardController {
 		
 		model.addAttribute("list1", list);
 
-		logger.info(paging.toString());
+		logger.info(paging.toString()); 
 		
 		logger.info(list.toString());
 		
