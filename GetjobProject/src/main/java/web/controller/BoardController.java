@@ -30,8 +30,12 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/board/list", method=RequestMethod.GET)
-	public void list(Model model, @RequestParam(defaultValue = "1") int curPage) {
+	public void list(Model model, @RequestParam(defaultValue = "1") int curPage, String search, String select) {
 	
+		logger.info("select : "+select);
+		
+		logger.info("search : "+search);
+		
 		Paging paging = boardService.getCurPage(curPage);
 		
 		model.addAttribute("paging", paging);

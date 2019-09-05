@@ -8,6 +8,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$("#btnSearch").click(function(){
+			$("form").submit();
+		})
+		
+	});
+
+</script>
 <style>
 	.listTd{
 		text-align: center;
@@ -40,6 +50,19 @@
 </tr>
 </c:forEach>
 </table>
+<div class="search">
+	<form action="/board/list" method="get">
+		<select name="select">
+			<option selected="selected" value="title">제목</option>
+			<option value="content">내용</option>
+			<option value="writer_nick">작성자</option>
+		</select>
+		
+		<input type="text" name="search" placeholder="검색어를 입력해주세요" />
+		<input type="button" id="btnSearch" value="검색">
+	</form>
+</div>
+
 <div>
 	<a href="/member/main"><button>메인으로</button></a>
 	<a href="/board/write"><button>글쓰기</button></a>
