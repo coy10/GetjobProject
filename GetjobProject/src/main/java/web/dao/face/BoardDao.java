@@ -3,6 +3,8 @@ package web.dao.face;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.Multimap;
+
 import web.dto.Board;
 import web.dto.Comment;
 import web.dto.Recommend;
@@ -39,4 +41,6 @@ public interface BoardDao {
 	public void insertComment(Comment comment);
 	
 	public void deleteComment(Comment comment);
+	
+	public void deleteList(List list);
 }

@@ -137,6 +137,11 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Override
+	public void listDelete(List list) {
+		boardDao.deleteList(list);
+	}
+
 	
 
 	
