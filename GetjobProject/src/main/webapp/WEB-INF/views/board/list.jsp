@@ -12,7 +12,7 @@
 
 	$(document).ready(function(){
 		$("#btnSearch").click(function(){
-			$("form").submit();
+			$("#searchForm").submit();
 		})
 		
 	});
@@ -51,7 +51,7 @@
 </c:forEach>
 </table>
 <div class="search">
-	<form action="/board/list" method="get">
+	<form action="/board/list" method="get" id="searchForm">
 		<select name="select">
 			<option selected="selected" value="title">제목</option>
 			<option value="content">내용</option>
@@ -59,7 +59,7 @@
 		</select>
 		
 		<input type="text" name="search" placeholder="검색어를 입력해주세요" />
-		<input type="button" id="btnSearch" value="검색">
+		<button type="button" id="btnSearch">검색</button>
 	</form>
 </div>
 

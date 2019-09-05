@@ -11,7 +11,7 @@ public interface BoardService {
 	
 	public List list(Paging paging);
 
-	public Paging getCurPage(int curPage);
+	public Paging getCurPage(int curPage, String select, String search);
 	
 	public Board view(int board_no);
 	
