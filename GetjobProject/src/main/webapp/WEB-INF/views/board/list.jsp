@@ -15,7 +15,63 @@
 			$("#searchForm").submit();
 		})
 		
+		$("#btnDelete").click(function(){
+			
+			var $checkboxes=$("input:checkbox[name='checkRow']:checked")
+			
+// 			var names="";
+			
+// 			var len = $checkboxes.each(function(idx){
+				
+// 				names += $(this).val();
+				
+// 				if(len-1 != idx){
+// 					names += ",";
+// 				}
+// 			})
+// 		console.log(names);
+		var map = $checkboxes.map(function(){
+			return $(this).val();
+		});
+		
+		var names = map.get().join(",");
+		console.log(names);
+		
+		var $form = $("<form>")
+					.attr("action","/board/listDelete")
+					.attr("method","post")
+					.append(
+							$("<input>")
+							.attr("type","hidden")
+							.attr("name","names")
+							.attr("value",names)
+							
+					);
+		console.log(names);
+		$(document.body).append($form);
+		$form.submit();
+		})
 	});
+	
+	function checkAll(){
+		
+		var $checkboxes=$("input:checkbox[name='checkRow']");
+		
+		var check_status = $("#checkAll").is(":checked");
+		
+		if(check_status){
+			
+			$checkboxes.each(function(){
+				this.checked = true;
+				
+			});
+		}else{
+			$checkboxes.each(function(){
+				this.checked = false;
+			});
+		}
+		
+	}
 
 </script>
 <style>
@@ -29,6 +85,7 @@
 <hr>
 <table>
 	<tr>
+		<th><input type="checkbox" id="checkAll" onclick="checkAll();" class="allCheck"/></th>
 		<th>번호</th>
 		<th>제목</th>
 		<th>작성자</th>
@@ -40,6 +97,7 @@
 
 <c:forEach items="${list1 }" var="i">
 <tr>
+	<td class="listTd"><input type="checkbox" name="checkRow" value="${i.board_no}"/></td>
 	<td class="listTd">${i.board_no}</td>
 	<td class="listTd"><a href="/board/view?board_no=${i.board_no}">${i.title }</a></td>
 	<td class="listTd">${i.writer_id}</td>
@@ -66,6 +124,7 @@
 <div>
 	<a href="/member/main"><button>메인으로</button></a>
 	<a href="/board/write"><button>글쓰기</button></a>
+	<button type="button" id="btnDelete">삭제</button>
 	
 </div>
 </body>

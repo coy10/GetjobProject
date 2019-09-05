@@ -1,5 +1,6 @@
 package web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -182,10 +183,43 @@ public class BoardController {
 		
 		logger.info(" 코멘트 넘버가져와야댐:"+comment);
 		
-		
 		return comment;
 		
 	}
+	
+	@RequestMapping(value="/board/listDelete", method=RequestMethod.POST)
+	public String listDelete(String names) {
+		
+		logger.info("names : " + names);
+				
+		String[] array = names.split(",");
+				
+		for(int i=0;i<array.length;i++) {
+		logger.info(array[i]);
+		}
+		
+		List list = new ArrayList();
+		
+		
+		for(int i=0;i<array.length;i++) {
+			list.add(array[i]);
+			}
+		
+		
+		logger.info("list : " + list);
+
+
+	
+		
+		
+		if(!"".equals(names)||names!=null) {
+			
+			boardService.listDelete(list);
+		}
+		
+		return "redirect:/board/list";
+	}
+	
 	
 	@RequestMapping(value="/board/boardError", method=RequestMethod.GET)
 	public void error() {

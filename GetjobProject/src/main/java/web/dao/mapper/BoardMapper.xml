@@ -119,4 +119,17 @@
 		DELETE commentTB
 		WHERE comment_no = #{comment_no}
 	</delete>
+	
+	<delete id="deleteList" parameterType="list">
+		Delete board
+		WHERE board_no IN 
+		<foreach collection="list" item="type" index="index" open="(" close=")" separator=",">
+        #{type}
+        </foreach>
+
+
+
+
+		
+	</delete>
 </mapper>
