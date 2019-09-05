@@ -60,6 +60,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board boardUpdate(Board updateBoard) {
 
+		if(updateBoard.getTitle()=="" || updateBoard.getTitle()==null) {
+		updateBoard.setTitle("(제목없음)");
+		}
+		
 		boardDao.updateBoard(updateBoard);
 		
 		return updateBoard;
