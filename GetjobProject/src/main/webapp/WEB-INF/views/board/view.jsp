@@ -24,8 +24,8 @@ $(document).ready(function() {
 			, url: "/board/recommend"
 			, dataType: "json"
 			, data: {
-				writer_id: '${sessionScope.loginid }'
-				, board_no: '${view.board_no }'
+				writer_id: '${sessionScope.loginid}'
+				, board_no: '${view.board_no}'
 			}
 			, success: function(response) {
 				console.log(response);

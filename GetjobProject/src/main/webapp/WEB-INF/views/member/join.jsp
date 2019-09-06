@@ -13,7 +13,15 @@ window.onload = function() {
 var check = false;
 
 $(document).ready(function(){
+	
+	
+	
 	$("#idcheck").click(function(){
+		
+		if($('#id').val()==null||$('#id').val()==""){
+			alert("아이디를 입력해주세요");
+		}else{
+		
 		$.ajax({
 			type:"post"
 			,url:"/member/idcheck"
@@ -27,6 +35,7 @@ $(document).ready(function(){
 			if(response==true){
 				alert("사용가능합니다");
 				check = true;
+				$("#id").attr("readonly","true");
 			}
 			else{
 				alert("중복된 아이디입니다");
@@ -35,6 +44,7 @@ $(document).ready(function(){
 		}
 		
 		})
+		}
 	})
 	
 	$("#join").click(function(){

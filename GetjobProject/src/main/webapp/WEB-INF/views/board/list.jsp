@@ -6,30 +6,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판</title>
 <script type="text/javascript">
 
 	$(document).ready(function(){
+		
+// 		if(${sessionScope.loginid=='a'}){
+// 			$("#checkAll").attr("type","checkbox")
+// 			$(".checkRow").attr("type","checkbox")
+// 			$("#btnDelete").attr("type","button")
+// 		}
+		
 		$("#btnSearch").click(function(){
 			$("#searchForm").submit();
 		})
 		
 		$("#btnDelete").click(function(){
 			
-			var $checkboxes=$("input:checkbox[name='checkRow']:checked")
+		var $checkboxes=$("input:checkbox[name='checkRow']:checked")
 			
-// 			var names="";
-			
-// 			var len = $checkboxes.each(function(idx){
-				
-// 				names += $(this).val();
-				
-// 				if(len-1 != idx){
-// 					names += ",";
-// 				}
-// 			})
-// 		console.log(names);
 		var map = $checkboxes.map(function(){
 			return $(this).val();
 		});
@@ -38,7 +35,7 @@
 		console.log(names);
 		
 		var $form = $("<form>")
-					.attr("action","/board/listDelete")
+					.attr("action","/board/listDelete") 
 					.attr("method","post")
 					.append(
 							$("<input>")
@@ -51,6 +48,8 @@
 		$(document.body).append($form);
 		$form.submit();
 		})
+		
+		
 	});
 	
 	function checkAll(){
@@ -72,20 +71,28 @@
 		}
 		
 	}
-
 </script>
+
 <style>
 	.listTd{
 		text-align: center;
 	}
 </style>
+
 </head>
+
 <body>
-<h1>리스트</h1>
+
+<div>
+	<h1>게시판</h1>
+</div>
+
 <hr>
 <table>
 	<tr>
+		<c:if test="${loginid=='a' }">
 		<th><input type="checkbox" id="checkAll" onclick="checkAll();" class="allCheck"/></th>
+		</c:if>
 		<th>번호</th>
 		<th>제목</th>
 		<th>작성자</th>
@@ -97,7 +104,9 @@
 
 <c:forEach items="${list1 }" var="i">
 <tr>
-	<td class="listTd"><input type="checkbox" name="checkRow" value="${i.board_no}"/></td>
+	<c:if test="${loginid=='a' }">
+	<td class="listTd"><input  type="checkbox" id="checkRow" class="checkRow" name="checkRow" value="${i.board_no}"/></td>
+	</c:if>
 	<td class="listTd">${i.board_no}</td>
 	<td class="listTd"><a href="/board/view?board_no=${i.board_no}">${i.title }</a></td>
 	<td class="listTd">${i.writer_id}</td>
@@ -124,7 +133,9 @@
 <div>
 	<a href="/member/main"><button>메인으로</button></a>
 	<a href="/board/write"><button>글쓰기</button></a>
-	<button type="button" id="btnDelete">삭제</button>
+	<c:if test="${loginid=='a' }">
+	<input type="button" id="btnDelete" value="삭제"></input>
+	</c:if>
 	
 </div>
 </body>
