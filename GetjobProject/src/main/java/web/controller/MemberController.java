@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,7 +31,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/login", method=RequestMethod.POST)
-	public String loginProc(Member member, HttpSession session) {
+	public String loginProc(Member member, HttpSession session, Model model) {
 		
 		if(memberService.login(member)) {
 			
@@ -38,14 +39,18 @@ public class MemberController {
 			
 			logger.info(member.toString());
 			
+			model.addAttribute("msg","로그인 성공");
+			model.addAttribute("url","/member/main");
+			
 			session.setAttribute("login", true);
 			session.setAttribute("loginid",member.getId());
 			session.setAttribute("loginnick",member.getNick());
 		}
 		else {
-			return "redirect:/member/login";
+			model.addAttribute("msg","로그인 실패");
+			model.addAttribute("url","/member/login");
 		}
-		return "redirect:/member/main";
+		return "board/alert";
 	}
 	
 	@RequestMapping(value="/member/logout", method=RequestMethod.GET)
@@ -77,6 +82,8 @@ public class MemberController {
 	@RequestMapping(value="/member/idcheck", method=RequestMethod.POST)
 	@ResponseBody
 	public boolean idcheck(Member member) {
+		
+		
 		
 		boolean check = memberService.idcheck(member);
 		
