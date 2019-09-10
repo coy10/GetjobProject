@@ -80,6 +80,7 @@ $(document).ready(function() {
 		$(document.body).append($form);
 		$form.submit();
 	});
+	
 });
 
 
@@ -100,6 +101,7 @@ function deleteComment(comment_no) {
 		}
 	});
 }
+
 </script>
 
 </head>
@@ -132,22 +134,14 @@ function deleteComment(comment_no) {
 		<a href="/board/update?board_no=${view.board_no }"><button class="btn btn-primary">수정</button></a>
 		<a href="/board/delete?board_no=${view.board_no }"><button class="btn btn-danger">삭제</button></a>
 	</c:if>
-</div>	<!-- 버튼 영역 end -->
+</div>	
+<!-- 버튼 영역 end -->
 
 <!-- 댓글 처리 -->
 <div>
 
 <hr>
-<!-- 댓글 입력 -->
-<div class="form-inline text-center">
-	<input type="text" size="7" class="form-control"
-		id="commentWriter"
-		value="${sessionScope.loginnick }" readonly="readonly"/>
-	<textarea rows="2" cols="60"
-		class="form-control" id="commentContent"></textarea>
-	<button id="btnCommInsert" class="btn">입력</button>
-</div>
-<!-- 댓글 입력 end -->
+
 
 <!-- 댓글 리스트 -->
 <table class="table table-striped table-hover table-condensed">
@@ -171,13 +165,25 @@ function deleteComment(comment_no) {
 				<c:if test="${sessionScope.loginnick eq comment.writer_nick }">
 				<button class="btn btn-default" onclick="deleteComment(${comment.comment_no });">삭제</button>
 				</c:if>
-				
+				<button class="btn btn-default" onclick="insertComment(${comment.comment_no });">댓글달기</button>
 			</td>
 		</tr>
 	</c:forEach>
+	
 </tbody>
-</table>	<!-- 댓글 리스트 end -->
+</table>	
+<!-- 댓글 리스트 end -->
 
-</div>	<!-- 댓글 처리 end -->
+<!-- 댓글 입력 -->
+<div class="form-inline text-center">
+	<input type="text" size="7" class="form-control" id="commentWriter" value="${sessionScope.loginnick }" readonly="readonly"/>
+	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
+	<button id="btnCommInsert" class="btn">입력</button>
+</div>
+<!-- 댓글 입력 end -->
 
-</div>	<!-- container end -->
+</div>	
+<!-- 댓글 처리 end -->
+
+</div>	
+<!-- container end -->
