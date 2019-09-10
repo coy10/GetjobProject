@@ -1,9 +1,7 @@
 package web.service.face;
 
-import java.util.HashMap;
 import java.util.List;
 
-import com.google.common.collect.Multimap;
 
 import web.dto.Board;
 import web.dto.Comment;
@@ -39,5 +37,5 @@ public interface BoardService {
 	public void commentDelete(Comment comment);
 	
 	public void listDelete(List list);
-	
+
 }

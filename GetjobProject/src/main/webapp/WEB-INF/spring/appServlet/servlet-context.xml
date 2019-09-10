@@ -17,7 +17,8 @@
 			<mapping path="/board/write"/>
 			<exclude-mapping path="/board/boardError"/>
 			<beans:bean class="web.interceptor.BoardInterceptor" />
-		</interceptor><interceptor>
+		</interceptor>
+		<interceptor>
 			<mapping path="/board/view"/>
 			<exclude-mapping path="/board/boardError"/>
 			<beans:bean class="web.interceptor.BoardInterceptor" />
