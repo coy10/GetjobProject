@@ -201,18 +201,12 @@ public class BoardController {
 		
 		List list = new ArrayList();
 		
-		
 		for(int i=0;i<array.length;i++) {
 			list.add(array[i]);
 			}
 		
-		
 		logger.info("list : " + list);
 
-
-	
-		
-		
 		if(!"".equals(names)||names!=null) {
 			
 			boardService.listDelete(list);
@@ -220,7 +214,6 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
-	
 	
 	@RequestMapping(value="/board/boardError", method=RequestMethod.GET)
 	public void error() {

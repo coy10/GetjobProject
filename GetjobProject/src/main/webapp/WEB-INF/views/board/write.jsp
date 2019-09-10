@@ -43,14 +43,11 @@ $(document).ready(function() {
 <form action="/board/write" method="post">
 	<div class="form-group">
 		<label for="writer">작성자</label>
-		<input type="text" id="writer"  
-			value="${loginnick }" readonly="readonly"
-			class="form-control"/>
+		<input type="text" id="writer"  value="${loginnick }" readonly="readonly" class="form-control"/>
 	</div>
 	<div class="form-group">
 		<label for="title">제목</label>
-		<input type="text" id="title" name="title"   
-			class="form-control" /> <!-- name dto랑 똑같이 -->
+		<input type="text" id="title" name="title"  class="form-control" /> <!-- name dto랑 똑같이 -->
 	</div>
 	<div class="form-group">
 		<label for="content">본문</label>
