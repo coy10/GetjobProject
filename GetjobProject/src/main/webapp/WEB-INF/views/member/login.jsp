@@ -9,6 +9,20 @@ window.onload = function() {
 	
 	document.getElementById("id").focus();
 };
+
+$(document).ready(function(){
+	
+	$("#login").click(function(){
+		if($("#id").val()==null||$("#id").val()==""||$("#pw").val()==null||$("#pw").val()==""){
+			alert("빈칸을 입력하세요")
+		}else{
+			$("form").submit();
+		}
+		
+	})
+	
+	
+})
 </script>
 
 <div class="container">
@@ -36,7 +50,7 @@ window.onload = function() {
 		
 	<div class="form-group">
 		<div class="col-xs-offset-2 col-xs-10">
-			<button class="btn btn-primary">로그인</button>
+			<input type="button" class="btn btn-primary" id="login" value="로그인"></input>
 			<input type="reset" id="cancel"
 				class="btn btn-danger" value="취소"/>
 		</div>

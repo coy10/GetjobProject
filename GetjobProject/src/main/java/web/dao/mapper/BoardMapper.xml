@@ -126,10 +126,6 @@
 		<foreach collection="list" item="type" index="index" open="(" close=")" separator=",">
         #{type}
         </foreach>
-
-
-
-
-		
 	</delete>
+	
 </mapper>

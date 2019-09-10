@@ -14,8 +14,7 @@ public class BoardInterceptor extends HandlerInterceptorAdapter{
 	private static final Logger logger = LoggerFactory.getLogger(BoardInterceptor.class);
 	
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		logger.info("+ + + 인터셉터 시작 + + +");
 		
@@ -25,18 +24,16 @@ public class BoardInterceptor extends HandlerInterceptorAdapter{
 			response.sendRedirect("/board/boardError");
 			return false;
 		}
-		
-		
-		return true;
+	return true;
 	}
 	
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 	
 		logger.info(" + + + 인터셉트 종료 + + + ");
 		
 		super.postHandle(request, response, handler, modelAndView);
+
 	}
 	
 }

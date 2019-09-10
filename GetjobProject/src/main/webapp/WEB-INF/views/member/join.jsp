@@ -14,44 +14,49 @@ var check = false;
 
 $(document).ready(function(){
 	
-	
-	
 	$("#idcheck").click(function(){
 		
 		if($('#id').val()==null||$('#id').val()==""){
 			alert("아이디를 입력해주세요");
 		}else{
 		
-		$.ajax({
-			type:"post"
-			,url:"/member/idcheck"
-			,dataType:"json"
-			,data:{
-				id : $('#id').val()
-			}
-		,success:function(response){
-			console.log(response);
-			
-			if(response==true){
-				alert("사용가능합니다");
-				check = true;
-				$("#id").attr("readonly","true");
-			}
-			else{
-				alert("중복된 아이디입니다");
-				check = false;
-			}
-		}
-		
-		})
+			$.ajax({
+				type:"post"
+				,url:"/member/idcheck"
+				,dataType:"json"
+				,data:{
+					id : $('#id').val()
+				}
+			,success:function(response){
+				console.log(response);
+				
+				if(response==true){
+					alert("사용가능합니다");
+					check = true;
+					$("#id").attr("readonly","true");
+				}else{
+					alert("중복된 아이디입니다");
+					check = false;
+					}
+				}
+			})
 		}
 	})
 	
-	$("#join").click(function(){
-		if(check==true){
-			$("form").submit();
+$("#join").click(function(){
+	
+	if($('#id').val()==null||$('#id').val()==""){
+		alert("아이디를 입력해주세요");
+	}else{
+		if($("#pw").val()==null||$("#pw").val()==""||$("#nick").val()==null||$("#nick").val()==""){
+			alert("빈칸을 입력하세요");
 		}else{
-			alert("사용가능한 아이디를 다시 입력해주세요");
+			if(check==true){
+				$("form").submit();
+			}else{
+				alert("중복확인을 눌러주세요");
+				}
+			}
 		}
 	})
 })

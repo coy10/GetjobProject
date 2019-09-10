@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import web.dao.face.BoardDao;
 import web.dto.Board;
 import web.dto.Comment;
 import web.dto.Recommend;

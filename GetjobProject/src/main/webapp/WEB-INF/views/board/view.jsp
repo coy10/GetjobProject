@@ -146,36 +146,35 @@ function deleteComment(comment_no) {
 	<textarea rows="2" cols="60"
 		class="form-control" id="commentContent"></textarea>
 	<button id="btnCommInsert" class="btn">입력</button>
-</div>	<!-- 댓글 입력 end -->
+</div>
+<!-- 댓글 입력 end -->
 
 <!-- 댓글 리스트 -->
 <table class="table table-striped table-hover table-condensed">
+
 <thead>
-<tr>
-	<th>작성자</th>
-	<th>댓글</th>
-	<th>작성일</th>
-	<th></th>
-</tr>
+	<tr>
+		<th>작성자</th>
+		<th>댓글</th>
+		<th>작성일</th>
+		<th></th>
+	</tr>
 </thead>
+
 <tbody>
-<c:forEach items="${comment }" var="comment">
-<tr data-commentno="${comment.comment_no }">
-	<td>${comment.writer_nick }</td>
-	<td>${comment.content }</td>
-	<td>
-		<fmt:formatDate value="${comment.writtendate }"
-			pattern="yy-MM-dd hh:mm:ss" />
-	</td>
-	<td>
-		<c:if test="${sessionScope.loginnick eq comment.writer_nick }">
-		<button class="btn btn-default"
-			onclick="deleteComment(${comment.comment_no });">삭제</button>
-		</c:if>
-	</td>
-	
-</tr>
-</c:forEach>
+	<c:forEach items="${comment }" var="comment">
+		<tr data-commentno="${comment.comment_no }">
+			<td>${comment.writer_nick }</td>
+			<td>${comment.content }</td>
+			<td><fmt:formatDate value="${comment.writtendate }" pattern="yy-MM-dd hh:mm:ss" /></td>
+			<td>
+				<c:if test="${sessionScope.loginnick eq comment.writer_nick }">
+				<button class="btn btn-default" onclick="deleteComment(${comment.comment_no });">삭제</button>
+				</c:if>
+				
+			</td>
+		</tr>
+	</c:forEach>
 </tbody>
 </table>	<!-- 댓글 리스트 end -->
 

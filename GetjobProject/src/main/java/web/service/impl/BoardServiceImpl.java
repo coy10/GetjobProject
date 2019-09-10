@@ -129,6 +129,7 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.insertComment(comment);
 		
 	}
+		
 
 	@Override
 	public void commentDelete(Comment comment) {
@@ -141,8 +142,5 @@ public class BoardServiceImpl implements BoardService {
 	public void listDelete(List list) {
 		boardDao.deleteList(list);
 	}
-
-	
-
-	
+		
 }

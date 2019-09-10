@@ -18,6 +18,7 @@ public class Comment {
 		return "Comment [comment_no=" + comment_no + ", board_no=" + board_no + ", writer_nick=" + writer_nick
 				+ ", content=" + content + ", writtendate=" + writtendate + "]";
 	}
+	
 	public String getWriter_nick() {
 		return writer_nick;
 	}
@@ -48,7 +49,5 @@ public class Comment {
 	public void setWrittendate(Date writtendate) {
 		this.writtendate = writtendate;
 	}
-	
-	
 	
 }
