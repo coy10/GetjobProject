@@ -37,5 +37,7 @@ public interface BoardService {
 	public void commentDelete(Comment comment);
 	
 	public void listDelete(List list);
+	
+	public void commentUpdate(Comment comment);
 
 }

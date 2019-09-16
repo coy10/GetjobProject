@@ -219,4 +219,16 @@ public class BoardController {
 	public void error() {
 		
 	}
+	
+	@RequestMapping(value="/board/updateComment", method=RequestMethod.POST)
+	public String commentUpdate(Comment comment) {
+		
+		logger.info("댓글보내기:"+comment.toString());
+		
+		boardService.commentUpdate(comment);
+		
+		return "redirect:/board/view?board_no="+comment.getBoard_no();
+	}
+	
+	
 }

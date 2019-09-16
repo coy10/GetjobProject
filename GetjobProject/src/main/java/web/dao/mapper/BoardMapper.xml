@@ -121,11 +121,17 @@
 	</delete>
 	
 	<delete id="deleteList" parameterType="list">
-		Delete board
+		DELETE board
 		WHERE board_no IN 
 		<foreach collection="list" item="type" index="index" open="(" close=")" separator=",">
         #{type}
         </foreach>
 	</delete>
 	
+	<update id="updateComment" parameterType="web.dto.Comment">
+		UPDATE commentTB
+		SET content = #{content},
+			writtendate = sysdate
+		WHERE comment_no = #{comment_no}
+	</update>
 </mapper>
