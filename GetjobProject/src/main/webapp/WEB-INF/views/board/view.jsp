@@ -56,6 +56,7 @@ $(document).ready(function() {
 // 		console.log($("#commentWriter").val());
 // 		console.log($("#commentContent").val());
 		
+		
 		$form = $("<form>").attr({
 			action: "/board/insertComment",
 			method: "post"
@@ -102,15 +103,21 @@ function deleteComment(comment_no) {
 	});
 }
 
-function updateComment(comment_no,content) {
+function updateComment(comment_no,content,board_no) {
 	$("#"+comment_no).html("<form id='updateCommentForm' action='/board/updateComment' method='post'><textarea name='content'>"+content+"</textarea><input type='hidden' name='board_no' value='${view.board_no}'/><input type='hidden' name='comment_no' value='"+comment_no+"'/></form>")
-	$("#update"+comment_no).remove();
-	$("#"+comment_no).append("<input type='button' class='btn btn-default' value='수정완료' onclick='commentUpdate();'> ")
+	$("#btnUpdate").hide();
+	$("#btnUpdatecancel").show();
+	$("#"+comment_no).append("<input type='button' class='btn btn-default' value='수정완료' onclick='commentUpdate();'><input type='button' class='btn btn-default' value='수정취소' onclick='cancelUpdate("+board_no+");'> ")
 }
 
 function commentUpdate(){
 	
 	$("#updateCommentForm").submit();
+}
+
+function cancelUpdate(board_no){
+	
+	location.replace("http://localhost:8088/board/view?board_no="+board_no+"");
 }
 
 </script>
@@ -159,13 +166,19 @@ function commentUpdate(){
 <!-- 댓글 처리 -->
 <div>
 
+
+<!-- 댓글 입력 -->
+<div class="form-inline text-center">
+	<input type="text" size="7" class="form-control" id="commentWriter" value="${sessionScope.loginnick }" readonly="readonly"/>
+	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
+	<button id="btnCommInsert" class="btn">입력</button>
+</div>
+<!-- 댓글 입력 end -->
+
 <hr>
 
 
 <!-- 댓글 리스트 -->
-
-
-
 
 	<c:forEach items="${comment }" var="comment">
 		<li data-commentno="${comment.comment_no }" class="commentli">
@@ -175,24 +188,19 @@ function commentUpdate(){
 			
 				<c:if test="${sessionScope.loginnick eq comment.writer_nick }">
 				<button class="btn btn-default" onclick="deleteComment(${comment.comment_no });">삭제</button>
-				<button class="btn btn-default" onclick="updateComment(${comment.comment_no},'${comment.content}');">수정</button>
+				<button id="btnUpdate" class="btn btn-default" onclick="updateComment(${comment.comment_no},'${comment.content}',${comment.board_no });">수정</button>
 				</c:if>
 				<button class="btn btn-default" onclick="insertComment(${comment.comment_no });">댓글달기</button>
 			<p id=${comment.comment_no }>
 				${comment.content }
 			</p>
+			<hr>
 		</li>
 	</c:forEach>
 
 <!-- 댓글 리스트 end -->
 
-<!-- 댓글 입력 -->
-<div class="form-inline text-center">
-	<input type="text" size="7" class="form-control" id="commentWriter" value="${sessionScope.loginnick }" readonly="readonly"/>
-	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
-	<button id="btnCommInsert" class="btn">입력</button>
-</div>
-<!-- 댓글 입력 end -->
+
 
 </div>	
 <!-- 댓글 처리 end -->

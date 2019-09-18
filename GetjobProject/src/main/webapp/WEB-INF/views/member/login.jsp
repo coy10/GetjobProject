@@ -4,7 +4,7 @@
 <script type="text/javascript">
 window.onload = function() {
 	document.getElementById("cancel").onclick = function() {
-		history.back(-1);
+		window.location.href = "http://localhost:8088/member/main";
 	};
 	
 	document.getElementById("id").focus();
