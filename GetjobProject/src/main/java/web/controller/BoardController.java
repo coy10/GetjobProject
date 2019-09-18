@@ -169,7 +169,7 @@ public class BoardController {
 	@RequestMapping(value="/board/insertComment", method=RequestMethod.POST)
 	public String commentInsert(Comment comment) {
 		
-		logger.info("댓글보내기:"+comment.toString());
+		logger.info("댓글삽입:"+comment.toString());
 		
 		boardService.commentInsert(comment);
 		
@@ -182,7 +182,7 @@ public class BoardController {
 		
 		boardService.commentDelete(comment);
 		
-		logger.info(" 코멘트 넘버가져와야댐:"+comment);
+		logger.info(" 댓글삭제:"+comment);
 		
 		return comment;
 		
@@ -191,7 +191,7 @@ public class BoardController {
 	@RequestMapping(value="/board/listDelete", method=RequestMethod.POST)
 	public String listDelete(String names) {
 		
-		logger.info("names : " + names);
+		logger.info("리스트체크삭제 : " + names);
 				
 		String[] array = names.split(",");
 				
@@ -223,7 +223,7 @@ public class BoardController {
 	@RequestMapping(value="/board/updateComment", method=RequestMethod.POST)
 	public String commentUpdate(Comment comment) {
 		
-		logger.info("댓글보내기:"+comment.toString());
+		logger.info("댓글수정:"+comment.toString());
 		
 		boardService.commentUpdate(comment);
 		
