@@ -147,5 +147,10 @@ public class BoardServiceImpl implements BoardService {
 	public void commentUpdate(Comment comment) {
 		boardDao.updateComment(comment);
 	}
+
+	@Override
+	public int cntcommentSelect(Comment comment) {
+		return boardDao.selectCntComment(comment);
+	}
 		
 }

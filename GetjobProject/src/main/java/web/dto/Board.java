@@ -12,14 +12,22 @@ public class Board {
 	private int hit;
 	private Date write_date;
 	private int recommend;
+	private int comment;
 	
 	
+
 
 	@Override
 	public String toString() {
 		return "Board [board_no=" + board_no + ", title=" + title + ", content=" + content + ", writer_id=" + writer_id
 				+ ", writer_nick=" + writer_nick + ", hit=" + hit + ", write_date=" + write_date + ", recommend="
-				+ recommend + "]";
+				+ recommend + ", comment=" + comment + "]";
+	}
+	public int getComment() {
+		return comment;
+	}
+	public void setComment(int comment) {
+		this.comment = comment;
 	}
 	public int getRecommend() {
 		return recommend;

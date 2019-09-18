@@ -13,7 +13,8 @@
 			SELECT rownum rnum, B.* FROM(
 				SELECT
 				board_no, title, content, writer_id, writer_nick, hit, write_date ,
-				(SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) AS recommend
+				(SELECT COUNT(*) FROM recommend WHERE board_no=board.board_no) AS recommend,
+				(SELECT COUNT(*) FROM commentTB WHERE board_no=board.board_no) AS cntcomment
 				FROM board
 				ORDER BY board_no DESC
 			) B
@@ -134,4 +135,9 @@
 			writtendate = sysdate
 		WHERE comment_no = #{comment_no}
 	</update>
+	
+	<select id="selectCntComment" parameterType="web.dto.Comment" resultType="int">
+		SELECT COUNT(*) FROM commentTB
+		WHERE board_no=#{board_no}
+	</select>
 </mapper>

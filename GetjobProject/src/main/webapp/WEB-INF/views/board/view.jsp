@@ -104,10 +104,10 @@ function deleteComment(comment_no) {
 }
 
 function updateComment(comment_no,content,board_no) {
-	$("#"+comment_no).html("<form id='updateCommentForm' action='/board/updateComment' method='post'><textarea name='content'>"+content+"</textarea><input type='hidden' name='board_no' value='${view.board_no}'/><input type='hidden' name='comment_no' value='"+comment_no+"'/></form>")
+	$("#comment"+comment_no).html("<form id='updateCommentForm' action='/board/updateComment' method='post'><textarea name='content'>"+content+"</textarea><input type='hidden' name='board_no' value='${view.board_no}'/><input type='hidden' name='comment_no' value='"+comment_no+"'/></form>")
 	$("#btnUpdate").hide();
 	$("#btnUpdatecancel").show();
-	$("#"+comment_no).append("<input type='button' class='btn btn-default' value='수정완료' onclick='commentUpdate();'><input type='button' class='btn btn-default' value='수정취소' onclick='cancelUpdate("+board_no+");'> ")
+	$("#comment"+comment_no).append("<input type='button' class='btn btn-default' value='수정완료' onclick='commentUpdate();'><input type='button' class='btn btn-default' value='수정취소' onclick='cancelUpdate("+board_no+");'> ")
 }
 
 function commentUpdate(){
@@ -191,7 +191,7 @@ function cancelUpdate(board_no){
 				<button id="btnUpdate" class="btn btn-default" onclick="updateComment(${comment.comment_no},'${comment.content}',${comment.board_no });">수정</button>
 				</c:if>
 				<button class="btn btn-default" onclick="insertComment(${comment.comment_no });">댓글달기</button>
-			<p id=${comment.comment_no }>
+			<p id="comment${comment.comment_no }">
 				${comment.content }
 			</p>
 			<hr>

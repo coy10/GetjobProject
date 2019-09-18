@@ -44,4 +44,6 @@ public interface BoardDao {
 	public void deleteList(List list);
 	
 	public void updateComment(Comment comment);
+	
+	public int selectCntComment(Comment comment);
 }

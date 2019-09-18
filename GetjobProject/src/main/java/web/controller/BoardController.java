@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import web.dao.face.BoardDao;
 import web.dto.Board;
 import web.dto.Comment;
 import web.dto.Recommend;
@@ -32,7 +31,7 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/board/list", method=RequestMethod.GET)
-	public void list(Model model, @RequestParam(defaultValue = "1")int curPage, String search, String select) {
+	public void list(Model model, @RequestParam(defaultValue = "1")int curPage, String search, String select,Comment comment) {
 	
 		logger.info("select : "+select);
 		
