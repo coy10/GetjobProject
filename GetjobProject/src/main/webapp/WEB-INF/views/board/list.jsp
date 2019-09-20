@@ -95,7 +95,6 @@
 		</c:if>
 		<th>번호</th>
 		<th>제목</th>
-		<th>내용</th>
 		<th>작성자</th>
 		<th>닉네임</th>
 		<th>조회수</th>
@@ -110,14 +109,12 @@
 	<td class="listTd"><input  type="checkbox" id="checkRow" class="checkRow" name="checkRow" value="${i.board_no}"/></td>
 	</c:if>
 	<td class="listTd">${i.board_no}</td>
-	<td class="listTd"><a href="/board/view?board_no=${i.board_no}">${i.title }</a></td>
-	<td class="listTd">${i.content}</td>
+	<td class="listTd"><a href="/board/view?board_no=${i.board_no}">${i.title } (${i.cntcomment })</a></td>
 	<td class="listTd">${i.writer_id}</td>
 	<td class="listTd">${i.writer_nick }</td>
 	<td class="listTd">${i.hit }</td>
 	<td class="listTd"><fmt:formatDate value="${i.write_date }" pattern="yyyy-MM-dd" /></td>
 	<td class="listTd">${i.recommend }</td>
-	<td class="listTd">${i.CNTCOMMENT }</td>
 </tr>
 </c:forEach>
 </table>

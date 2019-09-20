@@ -55,6 +55,9 @@ public class BoardServiceImpl implements BoardService {
 		if(board.getTitle()=="" || board.getTitle()==null) {
 			board.setTitle("(제목없음)");
 		}
+		if(board.getContent()=="" || board.getContent()==null) {
+			board.setContent("(내용없음)");
+		}
 		
 		boardDao.insertWrite(board);
 	}
@@ -69,8 +72,12 @@ public class BoardServiceImpl implements BoardService {
 	public Board boardUpdate(Board updateBoard) {
 
 		if(updateBoard.getTitle()=="" || updateBoard.getTitle()==null) {
-		updateBoard.setTitle("(제목없음)");
+			updateBoard.setTitle("(제목없음)");
 		}
+		if(updateBoard.getContent()=="" || updateBoard.getContent()==null) {
+			updateBoard.setContent("(내용없음)");
+		}
+
 		
 		boardDao.updateBoard(updateBoard);
 		

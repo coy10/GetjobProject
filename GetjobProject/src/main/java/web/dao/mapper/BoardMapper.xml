@@ -112,7 +112,7 @@
 	</select>
 	
 	<insert id="insertComment" parameterType="web.dto.Comment">
-		INSERT INTO commentTB(comment_no, board_no, writer_nick, content, writtendate)
+		INSERT INTO commentTB(comment_no, board_no, writer_nick, content, writtendate  )
 		VALUES(commentTB_seq.nextval, #{board_no} , #{writer_nick}, #{content}, sysdate)
 	</insert>
 	
@@ -140,4 +140,5 @@
 		SELECT COUNT(*) FROM commentTB
 		WHERE board_no=#{board_no}
 	</select>
+	
 </mapper>

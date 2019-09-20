@@ -10,15 +10,26 @@ public class Comment {
 	private String writer_nick;
 	private String content;
 	private Date writtendate;
+	private int commenttotal;
+
 	
 	
 	
+	
+	
+
+
 	@Override
 	public String toString() {
 		return "Comment [comment_no=" + comment_no + ", board_no=" + board_no + ", writer_nick=" + writer_nick
-				+ ", content=" + content + ", writtendate=" + writtendate + "]";
+				+ ", content=" + content + ", writtendate=" + writtendate + ", commenttotal=" + commenttotal + "]";
 	}
-	
+	public int getCommenttotal() {
+		return commenttotal;
+	}
+	public void setCommenttotal(int commenttotal) {
+		this.commenttotal = commenttotal;
+	}
 	public String getWriter_nick() {
 		return writer_nick;
 	}

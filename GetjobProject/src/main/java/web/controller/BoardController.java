@@ -54,7 +54,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/view", method=RequestMethod.GET)
-	public void view(Model model, int board_no, Recommend recommend,HttpSession session) {
+	public void view(Model model, int board_no, Recommend recommend,HttpSession session, Comment comment) {
 		
 		Board view= boardService.view(board_no);
 		
@@ -76,8 +76,17 @@ public class BoardController {
 		model.addAttribute("recommend", recommend);
 		
 		logger.info(recommend.toString());
-	
+		
+		boardService.cntcommentSelect(comment);
+		
+		comment.setCommenttotal(boardService.cntcommentSelect(comment));
+		
+		logger.info("댓글수 : "+comment);
+		
+		model.addAttribute("commentcnt", comment);
+		
 		List<Comment> commentlist = boardService.commentList(view);
+		
 		
 		logger.info("댓글 : "+commentlist);
 		

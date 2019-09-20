@@ -81,7 +81,6 @@ $(document).ready(function() {
 		$(document.body).append($form);
 		$form.submit();
 	});
-	
 });
 
 
@@ -120,6 +119,20 @@ function cancelUpdate(board_no){
 	location.replace("http://localhost:8088/board/view?board_no="+board_no+"");
 }
 
+function insertComment(comment_no){
+
+	var comment = document.getElementById("comment"+comment_no);
+	var divComment = document.getElementById("divComment");
+	divComment.style.display="";
+	comment.appendChild(divComment);
+
+}
+
+function btnCommCancel(){
+
+	$("#divComment").hide();
+}
+
 </script>
 <style type="text/css">
 .commentli{
@@ -149,6 +162,7 @@ function cancelUpdate(board_no){
 본문 : ${view.content }<br>
 조회수 : ${view.hit }<br>
 추천수 : <span id="recommend">${recommend.total }</span><br>
+댓글수 : ${commentcnt.commenttotal}<br>
 작성일 : <fmt:formatDate value="${view.write_date }"
 				pattern="yy-MM-dd HH:mm:ss" /><br>
 </div>	<!-- 상세보기 영역 end -->
@@ -175,13 +189,22 @@ function cancelUpdate(board_no){
 </div>
 <!-- 댓글 입력 end -->
 
+<!-- 댓글 입력 -->
+<div id="divComment" class="form-inline text-center" style="display : none">
+	<input type="text" size="7" class="form-control" id="commentWriter" value="${sessionScope.loginnick }" readonly="readonly"/>
+	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
+	<button id="btnCommInsert" class="btn">댓글입력</button>
+	<button id="btnCommCancel" class="btn" onclick="btnCommCancel();">취소</button>
+</div>
+<!-- 댓글 입력 end -->
+
 <hr>
 
 
 <!-- 댓글 리스트 -->
 
 	<c:forEach items="${comment }" var="comment">
-		<li data-commentno="${comment.comment_no }" class="commentli">
+		<li data-commentno="${comment.comment_no }"  class="commentli">
 			${comment.writer_nick }
 			
 			<fmt:formatDate value="${comment.writtendate }" pattern="yy-MM-dd hh:mm:ss" />
