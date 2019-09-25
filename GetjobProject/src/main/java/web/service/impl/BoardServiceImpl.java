@@ -132,9 +132,17 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void commentInsert(Comment comment) {
+			
+			if(comment.getRef_comment_no()!=0) {
+				
+				comment.setDeep(comment.getDeep()+1);
+				
+				boardDao.insertComment(comment);
+				
+			}else {
 		
-		boardDao.insertComment(comment);
-		
+			boardDao.insertComment(comment);
+			}
 	}
 		
 

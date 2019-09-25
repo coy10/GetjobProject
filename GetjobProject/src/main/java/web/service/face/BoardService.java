@@ -1,7 +1,7 @@
 package web.service.face;
 
 import java.util.List;
-
+import java.util.Map;
 
 import web.dto.Board;
 import web.dto.Comment;
@@ -41,5 +41,6 @@ public interface BoardService {
 	public void commentUpdate(Comment comment);
 	
 	public int cntcommentSelect(Comment comment);
+	
 
 }

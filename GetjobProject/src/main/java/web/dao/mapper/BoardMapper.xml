@@ -107,13 +107,16 @@
 	
 	<select id="selectCommentByBoardno"  parameterType="web.dto.Board" resultType="web.dto.Comment">
 		SELECT * FROM commentTB
-		WHERE board_no = #{board_no}
-		ORDER BY comment_no ASC
+		WHERE board_no=#{board_no}
+		START WITH ref_comment_no = 0 --계층구조 기준노드
+		CONNECT BY PRIOR comment_no = ref_comment_no --계층구조 하위노드
+		ORDER SIBLINGS BY writtendate --계층구조 유지하며 정렬
+
 	</select>
 	
 	<insert id="insertComment" parameterType="web.dto.Comment">
-		INSERT INTO commentTB(comment_no, board_no, writer_nick, content, writtendate  )
-		VALUES(commentTB_seq.nextval, #{board_no} , #{writer_nick}, #{content}, sysdate)
+		INSERT INTO commentTB(comment_no, board_no, writer_nick, content, writtendate,deep,ref_comment_no)
+		VALUES(commentTB_seq.nextval, #{board_no} , #{writer_nick}, #{content}, sysdate,#{deep},#{ref_comment_no})
 	</insert>
 	
 	<delete id="deleteComment" parameterType="web.dto.Comment">
