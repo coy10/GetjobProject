@@ -17,6 +17,10 @@ $(document).ready(function() {
 			.text("추천");
 	}
 	
+	$("#btnCommCancel").click(function(){
+		$("#divComment").hide();
+	})
+	
 	// 추천 수행
 	$("#btnRecommend").click(function() {
 		$.ajax({
@@ -136,16 +140,16 @@ function insertComment(comment_no){
 
 }
 
-function btnCommCancel(){
-
-	$("#divComment").hide();
-}
 
 </script>
 <style type="text/css">
 .commentli{
 	list-style : none;
 	padding-bottom : 20px;
+}
+.commentSpan{
+	color: red;
+	position: absolute;
 }
 </style>
 
@@ -206,7 +210,7 @@ function btnCommCancel(){
 	<input type="hidden" name="writer_nick" value="${loginnick }" />
 	<textarea rows="2" cols="60" class="form-control" id="commentContent" name="content"></textarea>
 	<input type="button" id="btnReCommentInsert" class="btn" value="대댓글입력">
-	<input type="button" id="btnCommCancel" class="btn" onclick="btnCommCancel();" value="취소" />
+	<input type="button" id="btnCommCancel" class="btn" value="취소" />
 	</form>
 </div>
 <!-- 댓글 입력 end -->
@@ -217,7 +221,9 @@ function btnCommCancel(){
 <!-- 댓글 리스트 -->
 
 	<c:forEach items="${comment }" var="comment">
-		<li data-commentno="${comment.comment_no }"  class="commentli">
+		<li data-commentno="${comment.comment_no }"  class="commentli" style="margin-left: calc(${comment.deep}*20px);">
+			<span class="commentSpan"><c:if test="${comment.deep ne 0}">ㄴ</c:if></span>
+			<div style="margin-left: 20px;">
 			${comment.writer_nick }
 			
 			<fmt:formatDate value="${comment.writtendate }" pattern="yy-MM-dd hh:mm:ss" />
@@ -227,10 +233,10 @@ function btnCommCancel(){
 				</c:if>
 				<c:if test="${comment.deep < 1 }"><button class="btn btn-default" onclick="insertComment(${comment.comment_no });">댓글달기</button></c:if>
 			<p id="comment${comment.comment_no }">
-			<c:if test="${comment.deep ne 0}">ㄴ</c:if>
 				${comment.content }
 			</p>
 			<hr>
+			</div>
 		</li>
 	</c:forEach>
 
