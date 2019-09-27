@@ -46,4 +46,5 @@ public interface BoardDao {
 	public void updateComment(Comment comment);
 	
 	public int selectCntComment(Comment comment);
+	
 }

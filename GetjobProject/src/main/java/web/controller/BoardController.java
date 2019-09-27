@@ -1,7 +1,9 @@
 package web.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -179,7 +181,7 @@ public class BoardController {
 		
 		logger.info("댓글삽입:"+comment.toString());
 		
-		boardService.commentInsert(comment);
+			boardService.commentInsert(comment);
 		
 		return "redirect:/board/view?board_no="+comment.getBoard_no();
 	}

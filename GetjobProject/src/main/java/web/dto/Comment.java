@@ -11,18 +11,32 @@ public class Comment {
 	private String content;
 	private Date writtendate;
 	private int commenttotal;
+	private int deep;
+	private int ref_comment_no;
 
 	
 	
 	
 	
 	
-
 
 	@Override
 	public String toString() {
 		return "Comment [comment_no=" + comment_no + ", board_no=" + board_no + ", writer_nick=" + writer_nick
-				+ ", content=" + content + ", writtendate=" + writtendate + ", commenttotal=" + commenttotal + "]";
+				+ ", content=" + content + ", writtendate=" + writtendate + ", commenttotal=" + commenttotal + ", deep="
+				+ deep + ", ref_comment_no=" + ref_comment_no + "]";
+	}
+	public int getDeep() {
+		return deep;
+	}
+	public void setDeep(int deep) {
+		this.deep = deep;
+	}
+	public int getRef_comment_no() {
+		return ref_comment_no;
+	}
+	public void setRef_comment_no(int ref_comment_no) {
+		this.ref_comment_no = ref_comment_no;
 	}
 	public int getCommenttotal() {
 		return commenttotal;

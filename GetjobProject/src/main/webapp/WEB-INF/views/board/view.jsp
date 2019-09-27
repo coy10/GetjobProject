@@ -81,6 +81,13 @@ $(document).ready(function() {
 		$(document.body).append($form);
 		$form.submit();
 	});
+	
+	$("#btnReCommentInsert").click(function(){
+		
+		$("#commentForm").submit();
+		
+	});
+	
 });
 
 
@@ -124,6 +131,7 @@ function insertComment(comment_no){
 	var comment = document.getElementById("comment"+comment_no);
 	var divComment = document.getElementById("divComment");
 	divComment.style.display="";
+	document.getElementById("ref_comment_no").value = comment_no;
 	comment.appendChild(divComment);
 
 }
@@ -191,10 +199,15 @@ function btnCommCancel(){
 
 <!-- 댓글 입력 -->
 <div id="divComment" class="form-inline text-center" style="display : none">
+	<form action="/board/insertComment" method="post" id="commentForm">
 	<input type="text" size="7" class="form-control" id="commentWriter" value="${sessionScope.loginnick }" readonly="readonly"/>
-	<textarea rows="2" cols="60" class="form-control" id="commentContent"></textarea>
-	<button id="btnCommInsert" class="btn">댓글입력</button>
-	<button id="btnCommCancel" class="btn" onclick="btnCommCancel();">취소</button>
+	<input type="hidden" name="ref_comment_no" id="ref_comment_no" />
+	<input type="hidden" name="board_no" value="${view.board_no }" />
+	<input type="hidden" name="writer_nick" value="${loginnick }" />
+	<textarea rows="2" cols="60" class="form-control" id="commentContent" name="content"></textarea>
+	<input type="button" id="btnReCommentInsert" class="btn" value="대댓글입력">
+	<input type="button" id="btnCommCancel" class="btn" onclick="btnCommCancel();" value="취소" />
+	</form>
 </div>
 <!-- 댓글 입력 end -->
 
@@ -208,13 +221,13 @@ function btnCommCancel(){
 			${comment.writer_nick }
 			
 			<fmt:formatDate value="${comment.writtendate }" pattern="yy-MM-dd hh:mm:ss" />
-			
 				<c:if test="${sessionScope.loginnick eq comment.writer_nick }">
 				<button class="btn btn-default" onclick="deleteComment(${comment.comment_no });">삭제</button>
 				<button id="btnUpdate" class="btn btn-default" onclick="updateComment(${comment.comment_no},'${comment.content}',${comment.board_no });">수정</button>
 				</c:if>
-				<button class="btn btn-default" onclick="insertComment(${comment.comment_no });">댓글달기</button>
+				<c:if test="${comment.deep < 1 }"><button class="btn btn-default" onclick="insertComment(${comment.comment_no });">댓글달기</button></c:if>
 			<p id="comment${comment.comment_no }">
+			<c:if test="${comment.deep ne 0}">ㄴ</c:if>
 				${comment.content }
 			</p>
 			<hr>
